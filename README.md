@@ -2,6 +2,14 @@
 
 The Fiolet API is organized around REST. Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
+## Getting Started
+1. Signup through [App](https://app.fiolet.xyz/)
+2. Choose **payment methods** (Networks and Tokens)
+3. Copy **API key** (already created or create a new one)
+4. Set up **webhook** receiving [(API)](https://github.com/fioletxyz/api#webhooks)
+5. Create a **Customer** using the [API](https://github.com/fioletxyz/api#customer) **(on a regular basis)**
+6. Create and finilize an **Invoice** using the [API](https://github.com/fioletxyz/api#invoice) **(on a regular basis)**
+7. Send Customer/Invoice **link** to the user
 ## Endpoint
 
 The API endpoint is `https://api.fiolet.xyz`
