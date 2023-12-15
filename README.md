@@ -24,9 +24,16 @@ x-api-key: YOUR_API_KEY
 
 ## Errors
 
-**400 Bad Request** - The request was unacceptable, often due to missing a required parameter.
+### Error structure
+The application uses an ErrMessage structure that contains error information. This structure includes two fields:
 
-**401 Unauthorized** - No valid API key provided.
+**Type**: The type of the error, which allows you to determine the nature of the error. Currently there are two types of errors:
+
+- InvalidRequestErr (`invalid_request_error`) - an error in the request;
+
+- ApiErr (`api_error`) - a server error.
+
+**Message**: A text description of the error, which contains information about the cause of the error or necessary actions to eliminate it.
 
 ## API Reference
 
@@ -45,18 +52,33 @@ Customer handlers help connect our payment solution and your metering system (e.
 **Attributes:**
 
 - **id** - unqiue id to connect user between our systems.
+- **metadata** - metadata of customer.
 - **created_at** - time of creation.
 - **link** - link to customer's checkout.
 
 #### POST /v1/customers
 Create customer.
 
+**Body:**
+
+```json
+{
+    "metadata": {
+        "user_id": "12345",
+        "email": "johndoe@gmai.com"
+    }
+}
+```
 
 **Response**
 
 ```json
 {
     "id": "cus_cj1veqk41l36cgukp2c0oktX",
+    "metadata": {
+        "user_id": "12345",
+        "email": "johndoe@gmai.com"
+    },
     "created_at": "2023-07-28T10:14:18.149804004-07:00",
     "link": "https://checkout.fiolet.xyz/customer/cus_cj1veqk41l36cgukp2c0oktX"
 }
@@ -95,6 +117,19 @@ Get customer object by customer id.
         "created_at": "2023-07-10T03:39:53.942584-07:00",
         "link": "https://checkout.fiolet.xyz/customer/cus_ZBNigiqKj2wxFR"
     }
+```
+
+#### PUT /v1/customer/:id
+Update customer by its id.
+
+**Body:**
+
+```json
+{
+    "metadata": {
+        "user_id": "1"
+    },
+}
 ```
 
 #### DELETE /v1/customers/:id
